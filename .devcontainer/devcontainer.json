@@ -1,0 +1,15 @@
+{
+    "name": "Android Development",
+    "image": "mcr.microsoft.com/devcontainers/java:dev-21-jdk-bookworm",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-codespaces",
+                "vscjava.vscode-java-pack",
+                "Dannark.AndroidLauncher",  // Android Emulator Launcher
+                "toroxx.vscode-avdmanager"  // AVD Manager
+            ]
+        }
+    },
+    "postCreateCommand": "bash .devcontainer/post-create.sh"
+}
