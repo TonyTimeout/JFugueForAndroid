@@ -5,6 +5,7 @@
         "vscode": {
             "extensions": [
                 "ms-azuretools.vscode-codespaces",
+                "github.copilot",,
                 "vscjava.vscode-java-pack",
                 "Dannark.AndroidLauncher",  // Android Emulator Launcher
                 "toroxx.vscode-avdmanager"  // AVD Manager
