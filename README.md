@@ -1,5 +1,5 @@
 # JFugueForAndroid
-This is a library which allows to use Android.Media.Midi together with the JFugue project for Android.
+This is a library which uses Android.Media.Midi together with the JFugue project for Android.
 
 ## Build Instructions
 
