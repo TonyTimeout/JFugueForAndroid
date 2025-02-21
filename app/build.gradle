@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.montyhacks.jfugue_for_android'
+    namespace = 'com.montyhacks.jfugue_for_android'
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.montyhacks.jfugue_for_android"

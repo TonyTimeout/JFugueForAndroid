@@ -6,11 +6,18 @@ sudo apt update && sudo apt install -y \
     unzip \
     wget \
     locate \
+    emacs \
     && sudo apt clean
 
 # Set environment variables for Android SDK
-export ANDROID_SDK_ROOT=/usr/local/android-sdk-linux
+export ANDROID_SDK_ROOT=${HOME}/Android/Sdk
 export PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools
+
+# Add environment variables to ~/.bashrc if not already present
+if ! grep -q "ANDROID_SDK_ROOT=${HOME}/Android/Sdk" ~/.bashrc; then
+    echo "export ANDROID_SDK_ROOT=${HOME}/Android/Sdk" >> ~/.bashrc
+    echo "export PATH=\$PATH:\$ANDROID_SDK_ROOT/cmdline-tools/tools/bin:\$ANDROID_SDK_ROOT/platform-tools" >> ~/.bashrc
+fi
 
 # Create directory for Android SDK
 sudo mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools
@@ -25,5 +32,5 @@ cd ${ANDROID_SDK_ROOT}/cmdline-tools \
 yes | sudo ${ANDROID_SDK_ROOT}/cmdline-tools/bin/sdkmanager --licenses \
     && sudo ${ANDROID_SDK_ROOT}/cmdline-tools/bin/sdkmanager --update \
     && sudo ${ANDROID_SDK_ROOT}/cmdline-tools/bin/sdkmanager "platform-tools" \
-    "platforms;android-30" \
-    "build-tools;30.0.3"
+    "platforms;android-34" \
+    "build-tools;34.0.0"
