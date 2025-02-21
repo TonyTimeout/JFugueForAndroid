@@ -1,16 +1,16 @@
 {
     "name": "Android Development",
-    "image": "mcr.microsoft.com/devcontainers/java:dev-21-jdk-bookworm",
+    "dockerFile": "Dockerfile",
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-azuretools.vscode-codespaces",
-                "github.copilot",,
+                "github.copilot",
                 "vscjava.vscode-java-pack",
-                "Dannark.AndroidLauncher",  // Android Emulator Launcher
-                "toroxx.vscode-avdmanager"  // AVD Manager
+                "vscode-docker",
+                "Dannark.AndroidLauncher",
+                "toroxx.vscode-avdmanager"
             ]
         }
-    },
-    "postCreateCommand": "bash .devcontainer/post-create.sh"
+    }
 }
