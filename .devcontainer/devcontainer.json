@@ -9,7 +9,8 @@
                 "vscjava.vscode-java-pack",
                 "ms-azuretools.vscode-docker",
                 "Dannark.AndroidLauncher",
-                "toroxx.vscode-avdmanager"
+                "toroxx.vscode-avdmanager",
+                "rrudi.vscode-dired"
             ]
         }
     }
