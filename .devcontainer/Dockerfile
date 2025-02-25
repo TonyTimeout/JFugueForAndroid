@@ -1,5 +1,10 @@
 # Use the specified base image
-FROM mcr.microsoft.com/devcontainers/java:dev-21-jdk-bookworm
+#FROM mcr.microsoft.com/devcontainers/java:dev-21-jdk-bookworm
+FROM alpine
+
+RUN preInitHomeDir
+RUN ls -al /home/vscode
+RUN postInitHomeDir
 
 ## Install essential packages
 #RUN apt-get update && apt-get install -y \
