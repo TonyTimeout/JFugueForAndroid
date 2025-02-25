@@ -7,7 +7,7 @@
                 "ms-azuretools.vscode-codespaces",
                 "github.copilot",
                 "vscjava.vscode-java-pack",
-                "vscode-docker",
+                "ms-azuretools.vscode-docker",
                 "Dannark.AndroidLauncher",
                 "toroxx.vscode-avdmanager"
             ]
