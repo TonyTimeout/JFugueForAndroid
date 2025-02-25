@@ -12,7 +12,9 @@ FROM mcr.microsoft.com/devcontainers/java:dev-21-jdk-bookworm
 #
 ## Set environment variables for Android SDK
 RUN echo prehome $HOME posthome
+ARG HOME=$HOME
 ENV ANDROID_SDK_ROOT=${HOME}/Android/Sdk
+RUN echo preSdk ${ANDROID_SDK_ROOT} postSdk
 RUN echo prepath1 $PATH postpath1
 ENV PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools
 RUN echo prepath2 $PATH postpath2
@@ -52,6 +54,9 @@ RUN echo postls
 #ENV PATH=/opt/gradle/latest/bin:$PATH
 #
 ## Add environment variables to .bashrc for interactive shell sessions
-#RUN echo 'export ANDROID_SDK_ROOT=${HOME}/Android/Sdk' >> ~/.bashrc \
-#    && echo 'export PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools' >> ~/.bashrc \
-#    && echo 'export PATH=/opt/gradle/latest/bin:$PATH' >> ~/.bashrc
+RUN echo 'export ANDROID_SDK_ROOT=${HOME}/Android/Sdk' >> ~/.bashrc \
+    && echo 'export PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools' >> ~/.bashrc \
+    && echo 'export PATH=/opt/gradle/latest/bin:$PATH' >> ~/.bashrc
+RUN echo preCatBashrc
+RUN cat ~/.bashrc
+RUN echo postCatBashrc
