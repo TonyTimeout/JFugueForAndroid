@@ -12,8 +12,10 @@ FROM mcr.microsoft.com/devcontainers/java:dev-21-jdk-bookworm
 #
 ## Set environment variables for Android SDK
 RUN echo prehome $HOME posthome
-ARG HOME=$HOME
+ARG HOME
+ENV HOME=${HOME}
 ENV ANDROID_SDK_ROOT=${HOME}/Android/Sdk
+# incorrectly showing as: /Android/Sdk ... $HOME not being expanded
 RUN echo preSdk ${ANDROID_SDK_ROOT} postSdk
 RUN echo prepath1 $PATH postpath1
 ENV PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools
@@ -54,9 +56,21 @@ RUN echo postls
 #ENV PATH=/opt/gradle/latest/bin:$PATH
 #
 ## Add environment variables to .bashrc for interactive shell sessions
-RUN echo 'export ANDROID_SDK_ROOT=${HOME}/Android/Sdk' >> ~/.bashrc \
-    && echo 'export PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools' >> ~/.bashrc \
-    && echo 'export PATH=/opt/gradle/latest/bin:$PATH' >> ~/.bashrc
+
+# $HOME is /root -- so is written to /root and not to user account
+#   -> but root is the wrong account to use so do not suggest /root
+#   -> also cannot set "ARG HOME=/root" because /root is wrong account
+# problem is I don't know what user account is at this time ... do you Copilot?
+RUN echo "export ANDROID_SDK_ROOT=${HOME}/Android/Sdk" >> ${HOME}/.bashrc \
+    && echo "export PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${ANDROID_SDK_ROOT}/platform-tools" >> ${HOME}/.bashrc \
+    && echo "export PATH=/opt/gradle/latest/bin:$PATH" >> ${HOME}/.bashrc
 RUN echo preCatBashrc
-RUN cat ~/.bashrc
+RUN echo ~
+RUN ls ~/.bashrc
 RUN echo postCatBashrc
+# what is in /home at this point?
+RUN echo preHomeDir
+RUN ls -ld /home
+RUN echo midHomeDir
+RUN ls /home/vscode || true
+RUN echo postHomeDir
