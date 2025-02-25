@@ -70,7 +70,7 @@ RUN ls ~/.bashrc
 RUN echo postCatBashrc
 # what is in /home at this point?
 RUN echo preHomeDir
-RUN ls -ld /home
+RUN ls -ald /home/*
 RUN echo midHomeDir
 RUN ls /home/vscode || true
 RUN echo postHomeDir
